@@ -7,5 +7,5 @@ nodes:
         - worker
       hostname_override: rke01
 
-# ingress:
-#     provider: none
+ingress:
+    provider: none
