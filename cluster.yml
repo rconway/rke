@@ -10,6 +10,9 @@ nodes:
 ingress:
     provider: none
 
+addons_include:
+  - ./ingress-nginx/ingress-nginx-rke-nodeport.yml
+
 # cloud_provider:
 #   name: openstack
 #   openstackCloudProvider:
