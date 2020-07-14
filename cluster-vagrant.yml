@@ -1,0 +1,15 @@
+nodes:
+  - address: 192.168.111.101
+    user: vagrant
+    role:
+      - controlplane
+      - etcd
+    hostname_override: rke01
+  - address: 192.168.111.102
+    user: vagrant
+    role:
+      - worker
+    hostname_override: rke02
+
+ingress:
+  provider: none
