@@ -284,18 +284,15 @@ metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
 spec:
-  type: NodePort
   ports:
     - name: http
       port: 80
       protocol: TCP
       targetPort: http
-      nodePort: 31080
     - name: https
       port: 443
       protocol: TCP
       targetPort: https
-      nodePort: 31443
   selector:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/instance: ingress-nginx
@@ -330,6 +327,7 @@ spec:
         app.kubernetes.io/component: controller
     spec:
       dnsPolicy: ClusterFirst
+      hostNetwork: true
       containers:
         - name: controller
           image: us.gcr.io/k8s-artifacts-prod/ingress-nginx/controller:v0.34.0@sha256:56633bd00dab33d92ba14c6e709126a762d54a75a6e72437adefeaaca0abb069
@@ -387,12 +385,15 @@ spec:
           ports:
             - name: http
               containerPort: 80
+              hostPort: 80
               protocol: TCP
             - name: https
               containerPort: 443
+              hostPort: 443
               protocol: TCP
             - name: webhook
               containerPort: 8443
+              hostPort: 8443
               protocol: TCP
           volumeMounts:
             - name: webhook-cert
