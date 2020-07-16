@@ -10,9 +10,14 @@ cd "${ORIG_DIR}"
 
 trap "cd '${ORIG_DIR}'" EXIT
 
+USER=$1
+if [ -z "$USER" ]; then USER=vagrant; fi
+
+echo "Setting up node for USER = ${USER}"
+
 # Install docker
 if ! hash docker 2>/dev/null
 then
   curl -sfL https://get.docker.com | sh -s -
-  sudo usermod -aG docker vagrant
+  sudo usermod -aG docker ${USER}
 fi

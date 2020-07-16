@@ -1,17 +1,23 @@
 nodes:
-    - address: 192.168.123.110
+    - address: 192.168.123.7
       user: eouser
       role:
         - controlplane
         - etcd
         - worker
-      hostname_override: rke01
+      # hostname_override: rke01
 
 ingress:
     provider: none
 
 addons_include:
   - ./ingress-nginx/ingress-nginx-rke-nodeport.yml
+
+bastion_host:
+  address: 185.52.192.70
+  user: eouser
+  # port: 22
+  # ssh_key_path: /home/user/.ssh/bastion_rsa
 
 # cloud_provider:
 #   name: openstack
