@@ -10,10 +10,8 @@ cd "${ORIG_DIR}"
 
 trap "cd '${ORIG_DIR}'" EXIT
 
-USER=$1
-if [ -z "$USER" ]; then USER=vagrant; fi
-
-echo "Setting up node for USER = ${USER}"
+USER="${1:-vagrant}"
+echo "Setting up node for USER=${USER}"
 
 # Install docker
 if ! hash docker 2>/dev/null
